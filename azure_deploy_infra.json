@@ -1,0 +1,520 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_IaaSDiagnostics_xmlCfg": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_storageAccountName": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_storageAccountKey": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_storageAccountEndPoint": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_xmlCfg_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_storageAccountName_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_storageAccountKey_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_IaaSDiagnostics_storageAccountEndPoint_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "virtualMachines_CIWBSH01_name": {
+            "defaultValue": "CIWBSH01",
+            "type": "String"
+        },
+        "networkInterfaces_CIWBSH01789_name": {
+            "defaultValue": "CIWBSH01-nic",
+            "type": "String"
+        },
+        "publicIPAddresses_CIWBSH01_ip_name": {
+            "defaultValue": "CIWBSH01-pip",
+            "type": "String"
+        },
+        "networkSecurityGroups_CIWBSH01_nsg_name": {
+            "defaultValue": "CIWBSH01-nsg",
+            "type": "String"
+        },
+        "virtualNetworks_rg_win2016_dev01_vnet_name": {
+            "defaultValue": "Network1",
+            "type": "String"
+        },
+        "storageAccounts_rgwin2016dev01diag868_name": {
+            "defaultValue": "rgiwbdiag868",
+            "type": "String"
+        },
+        "extensions_IaaSDiagnostics_name": {
+            "defaultValue": "IaaSDiagnostics",
+            "type": "String"
+        },
+        "extensions_IaaSDiagnostics_name_1": {
+            "defaultValue": "IaaSDiagnostics",
+            "type": "String"
+        },
+        "securityRules_RDP_name": {
+            "defaultValue": "RDP",
+            "type": "String"
+        },
+        "subnets_default_name": {
+            "defaultValue": "default",
+            "type": "String"
+        },
+        "securityRules_HTTPS_name": {
+            "defaultValue": "HTTPS",
+            "type": "String"
+        },
+        "securityRules_default_allow_rdp_name": {
+            "defaultValue": "default-allow-rdp",
+            "type": "String"
+        },
+        "securityRules_default_allow_rdp_name_1": {
+            "defaultValue": "default-allow-rdp",
+            "type": "String"
+        },
+        "virtualMachines_CIWBSH01_id": {
+            "defaultValue": "/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/RG-IWB/providers/Microsoft.Compute/disks/CIWBSH01_OsDisk_1_0297a2a09da447f18e2056bee0a307b2",
+            "type": "String"
+        },
+
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/networkInterfaces/CIWBSH01789' から一般化されました。",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_CIWBSH01789_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "japanwest",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "5d1b16fa-fc04-492c-a8db-fad4126364c9",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"eab04e67-be44-4ea3-a6ef-7376684fd85c\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "172.16.2.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_CIWBSH01_ip_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_rg_win2016_dev01_vnet_name'), parameters('subnets_default_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": []
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_CIWBSH01_nsg_name'))]"
+                },
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_CIWBSH01_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_CIWBSH01_ip_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_rg_win2016_dev01_vnet_name'), parameters('subnets_default_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_CIWBSH01_nsg_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_CIWBSH01_name'))]"
+            ]
+        },
+        
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/networkSecurityGroups/CIWBSH01-nsg' から一般化されました。",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_CIWBSH01_nsg_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "japanwest",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "a4a58a61-a088-4a58-80eb-1ed3131db8a4",
+                "securityRules": [
+                    {
+                        "name": "default-allow-rdp",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1000,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "RDP",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "HTTPS",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"017503be-4420-4bc9-94b9-b92c2395ebd4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/publicIPAddresses/CIWBSH01-ip' から一般化されました。",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_CIWBSH01_ip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "japanwest",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "df88d181-9834-4719-a016-8549dd649261",
+                "ipAddress": "104.215.13.53",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            },
+            "dependsOn": []
+        },
+        
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/virtualNetworks/rg-win2016-dev01-vnet' から一般化されました。",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_rg_win2016_dev01_vnet_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "japanwest",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "76585883-8165-4d6c-b674-220d49dfe418",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/8"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "10.10.0.10"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "default",
+                        "etag": "W/\"5597c95d-8b5d-449b-bd27-a0386dfd8b0f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.10.0.0/24"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Storage/storageAccounts/rgwin2016dev01diag868' から一般化されました。",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_rgwin2016dev01diag868_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "japanwest",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/networkSecurityGroups/CIWBSH01-nsg/securityRules/default-allow-rdp' から一般化されました。",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_CIWBSH01_nsg_name'), '/', parameters('securityRules_default_allow_rdp_name_1'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3389",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1000,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_CIWBSH01_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/networkSecurityGroups/CIWBSH01-nsg/securityRules/RDP' から一般化されました。",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_CIWBSH01_nsg_name'), '/', parameters('securityRules_RDP_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3389",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 110,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_CIWBSH01_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/networkSecurityGroups/CIWBSH01-nsg/securityRules/HTTPS' から一般化されました。",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_CIWBSH01_nsg_name'), '/', parameters('securityRules_HTTPS_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "443",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 100,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_CIWBSH01_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/networkSecurityGroups/VCMTSH01-nsg/securityRules/default-allow-rdp' から一般化されました。",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_VCMTSH01_nsg_name'), '/', parameters('securityRules_default_allow_rdp_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "protocol": "TCP",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3389",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 1000,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VCMTSH01_nsg_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/3e0d05a0-6808-4b04-b08d-3f1ea7addc86/resourceGroups/rg-win2016-dev01/providers/Microsoft.Network/virtualNetworks/rg-win2016-dev01-vnet/subnets/default' から一般化されました。",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_rg_win2016_dev01_vnet_name'), '/', parameters('subnets_default_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.10.0.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_rg_win2016_dev01_vnet_name'))]"
+            ]
+        }
+    ]
+}
